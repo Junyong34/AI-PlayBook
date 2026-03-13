@@ -1,41 +1,65 @@
 # AI‑PlayBook
 
-AI 제품/에이전트 개발에 필요한 플레이북을 정리한 저장소입니다. 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-에이전트 프롬프트/rules, 코드 리뷰 규칙, 운영 체크리스트 등 AI에 적용 시킬 수 있는 Docs 입니다.
+AI 제품/에이전트 개발에 필요한 재사용 가능한 스킬(Skills)과 플레이북을 정리한 저장소입니다.
 
+## 개요
 
+AI‑PlayBook은 **Claude Code, Codex CLI/App**과 함께 사용할 수 있는 **재사용 가능한 스킬 모음**입니다. 각 스킬은 특정 작업(Git 커밋 메시지 작성, 코드 검증, 코딩 표준 준수 등)을 일관되게 수행하도록 돕습니다.
 
-## 소개
-AI‑PlayBook은 팀이 일관된 방식으로 LLM/에이전트를 설계·구현·운영할 수 있도록 돕는 규칙과 템플릿 모음입니다. 
+## Skills 목록
 
-문서 중심 저장소로, 각 프로젝트에 필요한 규칙과 템플릿을 복사해 사용합니다.
+### Git & 버전 관리
+| Skill | 설명 | 사용 시점 |
+|-------|------|-----------|
+| [`git-commit-msg`](./skills/git-commit-msg/SKILL.md) | JIRA 티켓 기반 한글 Git 커밋 메시지 작성 및 검토 | 커밋 메시지 작성 시, prefix 선택과 제목/본문 형식 일관성 필요 시 |
 
-## 저장소 구성
-현재 포함된 파일/문서:
-- `AGENTS.md`: 에이전트(Agent) 설계 가이드 및 저장소 운영 규칙
-- `LICENSE`: 라이선스 정보(MIT)
-- `README.md`: 본 문서
+### 검증 & 품질 관리
+| Skill | 설명 | 사용 시점 |
+|-------|------|-----------|
+| [`verify-implementation`](./.claude/skills/verify-implementation/SKILL.md) | 프로젝트의 모든 verify 스킬을 순차 실행하여 통합 검증 | 기능 구현 후, PR 생성 전, 코드 리뷰 시 |
+| [`manage-skills`](./.claude/skills/manage-skills/SKILL.md) | 세션 변경사항 분석 및 검증 스킬 생성/업데이트, CLAUDE.md 관리 | 새 패턴 도입 후, 스킬 일관성 점검 시, PR 전 커버리지 확인 시 |
 
-추가 예정(예시):
-- `rules/`: 프롬프트 스타일가이드, 코드 리뷰 규칙, 리팩터링 가이드, 운영 체크리스트 등
-- `specs/`: 요구사항/설계/태스크 템플릿과 예시 스펙 문서
-- `examples/`: 프롬프트, 워크플로, 도구 호출 패턴, 평가(Eval) 예시
+### 코딩 표준 & 패턴
+| Skill | 설명 | 적용 범위 |
+|-------|------|-----------|
+| [`coding-standards`](./.claude/skills/coding-standards.md) | TypeScript, JavaScript, React, Node.js 코딩 표준 | 변수 명명, 에러 처리, 타입 안정성, 코드 품질 원칙 |
+| [`frontend-patterns`](./.claude/skills/frontend-patterns.md) | React, Next.js 프론트엔드 개발 패턴 | 컴포넌트 패턴, 커스텀 훅, 상태 관리, 성능 최적화, 접근성 |
 
 ## 빠르게 시작하기
-1) 저장소를 Star/Fork 하거나 프로젝트에 서브모듈로 추가합니다.
-2) `AGENTS.md`를 읽고 팀 상황에 맞게 규칙을 경량 커스터마이즈합니다.
-3) 필요한 규칙/템플릿을 프로젝트로 복사하거나 내부 위키에 링크합니다.
-4) 스펙 문서 템플릿을 사용해 요구사항 → 설계 → 태스크를 일관되게 문서화합니다.
 
-바로 보기: [`AGENTS.md`](./AGENTS.md)
+### 전체 스킬 설치
 
+```bash
+npx skills add Junyong34/AI-PlayBook
+```
 
-## FAQ
-- Q. 실행/빌드가 필요한가요?
-  - A. 문서 중심 저장소입니다. 각 애플리케이션 레포로 규칙·템플릿을 가져가서 사용하세요.
-- Q. 팀 상황에 맞게 문서를 수정해도 되나요?
-  - A. 네. 변경 이유와 합의 과정을 남겨 지식이 축적되도록 해주세요.
+pnpm 사용 시:
+
+```bash
+pnpm dlx skills add Junyong34/AI-PlayBook
+```
+
+### 특정 스킬만 설치
+
+```bash
+npx skills add Junyong34/AI-PlayBook --skill git-commit-msg
+```
+
+pnpm 사용 시:
+
+```bash
+pnpm dlx skills add Junyong34/AI-PlayBook --skill git-commit-msg
+```
+
 
 ## 라이선스
+
 본 저장소는 MIT 라이선스를 따릅니다. 자세한 내용은 [`LICENSE`](./LICENSE) 파일을 참고하세요.
+
+---
+
+**Made with ❤️ for AI-assisted development**
+
+*Compatible with Claude Code, Codex CLI/App, and Agent Skills standard*
