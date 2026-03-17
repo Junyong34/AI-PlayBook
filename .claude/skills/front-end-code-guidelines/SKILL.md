@@ -13,13 +13,6 @@ user-invocable: true
 이 스킬은 `mfront-web` 프론트엔드 작업 시 프로젝트 전용 코딩 기준입니다.
 **일반적인 웹 개발 상식보다 이 레포의 실제 설정과 레거시 상황을 우선합니다.**
 
-## 공통 규칙
-
-- alias가 있으면 깊은 상대 경로보다 alias import를 우선합니다.
-- 컴포넌트 파일은 `PascalCase.tsx`, 훅/유틸은 `camelCase.ts`, 상수는 `UPPER_SNAKE_CASE`.
-- import 경로에는 확장자를 붙이지 않습니다.
-- `archive` 폴더는 import 하지 않습니다.
-
 ## 세부 가이드
 
 작업 영역에 따라 아래 파일을 참조합니다.
