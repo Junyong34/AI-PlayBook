@@ -1,17 +1,20 @@
 ---
 name: front-end-code-guidelines
 description: |
-  mfront-web 프로젝트의 프론트엔드 코드 가이드라인 스킬입니다.
-  React, TypeScript, Emotion 스타일, 개발 방법론에 대한 프로젝트 기준을 적용합니다.
+  mfront-web 프론트엔드 코드 가이드라인을 적용합니다.
 
-  다음 상황에서 반드시 이 스킬을 활성화합니다:
-  - 프론트엔드 컴포넌트, 훅, 페이지, 유틸 코드를 새로 작성할 때
-  - 기존 React/TypeScript 코드를 수정하거나 리팩터링할 때
-  - Emotion/CSS 스타일링 작업을 할 때
-  - 코드 리뷰 코멘트를 작성하거나 검토할 때
-  - 상태 관리(React Query, Rematch, local state) 위치를 결정할 때
-  - TypeScript 타입 설계나 any/as 처리 방향을 결정할 때
-  - 개발 방법론, 작업 범위, 변경 범위를 판단해야 할 때
+  Use this skill whenever the user is writing, modifying, debugging, or reviewing React/TypeScript web frontend code. This includes:
+  - React 컴포넌트·훅·페이지를 새로 만들거나 수정할 때
+  - 상태 관리 위치 결정 (React Query vs Rematch vs local state)
+  - useEffect, 의존성 배열, 무한 렌더링 등 훅 관련 문제 해결
+  - Emotion/CSS 스타일링 작업 (styled vs css prop, 반응형, 테마)
+  - TypeScript 타입 설계, any/as 처리, 제네릭 패턴
+  - 레거시 코드 수정 전략 (함수형 전환 vs 최소 수정)
+  - 코드 리뷰 범위, PR 범위, 리팩터링 범위 판단
+  - 컴포넌트 패턴 선택 (headless, compound, render props 등)
+  - 커스텀 훅 반환 타입, 에러 처리, 로딩 상태 설계
+
+  Does NOT apply to: Next.js, React Native, Vue, infra, or non-React-web projects.
 ---
 
 # 프론트엔드 코드 가이드라인
