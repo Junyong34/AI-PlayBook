@@ -46,3 +46,9 @@ build.gradle
 *.pkm
 *.rsa
 *.key
+
+# ai 디렉토리
+.claude
+.agents
+.junie
+.aiassistant
