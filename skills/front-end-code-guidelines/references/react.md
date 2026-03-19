@@ -1,4 +1,4 @@
-# React 개발 패턴 및 베스트 프랙티스 가이드
+# React 개발 패턴 및 base practices 가이드
 
 이 프로젝트는 React 18, React Query, Rematch(Redux), Emotion이 함께 사용되는 대형 프론트엔드입니다.
 이 가이드는 React 개발 시 유용한 패턴과 피해야 할 안티패턴을 제시합니다.
