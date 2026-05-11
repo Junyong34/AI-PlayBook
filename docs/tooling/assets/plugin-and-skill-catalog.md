@@ -36,6 +36,7 @@
 | Hookify | Plugin | both | `active` | 반복 실수 패턴 차단 |
 | codeburn | Plugin/CLI | both | `active` | 토큰, 세션 비용 가시화 |
 | andrej-karpathy-skills | Skill Pack | claude-only | `active` | 단순성 중심 코딩 원칙 적용 |
+| mattpocock/skills | Skill Pack | both | `active` | 실무 엔지니어링 중심 AI 코딩 에이전트 스킬 |
 | supermemory | MCP | both | `active` | 메모리 기반 컨텍스트 조회 |
 | gstack | Skill Pack | both | `active` | 계획, 배포, 조사, 리뷰, 테스트 워크플로우 |
 | compound-engineering-plugin | Plugin + Skills | both | `active` | 복합 엔지니어링 워크플로우 |
@@ -188,6 +189,100 @@ AI 사용 비용과 토큰 소모를 가시화하는 분석 도구입니다. Ses
 - 구현 전 “단순한 접근 우선” 원칙을 적용할 작업에 활성화합니다.
 - 리뷰 시 불필요한 추상화, 과한 일반화, 목표와 무관한 코드를 점검합니다.
 
+### mattpocock/skills
+
+| 항목 | 내용 |
+| --- | --- |
+| 유형 | Skill Pack |
+| 지원 AI | both |
+| 상태 | `active` |
+| 저장소 | <https://github.com/mattpocock/skills> |
+
+**특징**
+
+- Matt Pocock(Total TypeScript 창립자)이 만든 AI 코딩 에이전트용 Skill 모음집입니다.
+- 저장소 제목은 “Skills For Real Engineers”이며, vibe coding이 아닌 실제 엔지니어링을 위한 스킬을 표방합니다.
+- GSD, BMAD, Spec-Kit처럼 프로세스를 통째로 소유하는 방식보다 작고 조합 가능한 도구 상자 방식을 지향합니다.
+- Claude, Codex 등 특정 모델에 종속되지 않는 model-agnostic 워크플로우를 목표로 합니다.
+
+**핵심 철학**
+
+| 원칙 | 의미 |
+| --- | --- |
+| Small | 각 스킬을 작게 유지합니다. |
+| Easy to adapt | 자기 프로젝트에 맞게 쉽게 수정할 수 있습니다. |
+| Composable | 다른 스킬과 조합할 수 있습니다. |
+| Model-agnostic | Claude, Codex 등 어떤 모델에서도 작동하도록 설계합니다. |
+
+**해결하려는 실패 패턴**
+
+| 실패 패턴 | 원인 | 처방 | 관련 스킬 |
+| --- | --- | --- | --- |
+| 에이전트가 의도와 다른 것을 만듦 | 사용자와 에이전트 간 의사소통 격차 | 작업 시작 전 grilling 세션으로 결정 분기 해소 | `/grill-me`, `/grill-with-docs` |
+| 에이전트 응답이 너무 장황함 | 프로젝트 전용 용어와 맥락 공유 부족 | `CONTEXT.md` 공용 용어집과 ADR 유지 | `/grill-with-docs` |
+| 코드가 작동하지 않음 | 피드백 루프 부재 | TDD red-green-refactor 루프 적용 | `/tdd`, `/diagnose` |
+| 코드베이스가 Ball of Mud가 됨 | 빠른 AI 코딩으로 엔트로피도 빠르게 증가 | 매일 설계에 투자하고 주기적으로 아키텍처 개선 | `/to-prd`, `/zoom-out`, `/improve-codebase-architecture` |
+
+**Engineering 스킬**
+
+| 스킬 | 역할 |
+| --- | --- |
+| `/diagnose` | 어려운 버그와 성능 회귀를 재현, 최소화, 가설 수립, 계측, 수정, 회귀 테스트 흐름으로 진단합니다. |
+| `/grill-with-docs` | 계획을 도메인 모델과 대조해 압박 인터뷰를 진행하고 `CONTEXT.md`와 ADR을 즉시 업데이트합니다. |
+| `/triage` | 상태 머신 기반으로 이슈를 분류합니다. |
+| `/improve-codebase-architecture` | `CONTEXT.md`와 `docs/adr/`를 기반으로 모듈을 더 깊게 만들 기회를 찾습니다. |
+| `/setup-matt-pocock-skills` | 최초 1회 설정으로 이슈 트래커, triage 라벨, 문서 경로를 지정합니다. |
+| `/tdd` | 수직 슬라이스 단위로 기능 또는 버그를 red-green-refactor 방식으로 진행합니다. |
+| `/to-issues` | 계획이나 PRD를 다른 에이전트가 독립적으로 집어갈 수 있는 GitHub 이슈로 분해합니다. |
+| `/to-prd` | 지금까지의 대화 컨텍스트를 PRD로 합성하고 GitHub 이슈로 제출합니다. |
+| `/zoom-out` | 에이전트가 시스템 전체 관점에서 코드를 설명하도록 유도합니다. |
+| `/prototype` | 일회용 프로토타입을 생성합니다. 상태와 비즈니스 로직은 터미널 앱으로, UI는 한 라우트에서 여러 버전을 토글할 수 있게 만듭니다. |
+
+**Productivity 스킬**
+
+| 스킬 | 역할 |
+| --- | --- |
+| `/caveman` | 기술 정확성은 유지하면서 커뮤니케이션을 초압축해 토큰 사용량을 줄입니다. |
+| `/grill-me` | 결정 트리의 모든 가지가 해소될 때까지 요구사항을 집요하게 인터뷰합니다. |
+| `/write-a-skill` | progressive disclosure 구조로 새 Skill을 작성합니다. |
+
+**Misc 스킬**
+
+| 스킬 | 역할 |
+| --- | --- |
+| `/git-guardrails-claude-code` | `push`, `reset --hard`, `clean` 같은 위험한 git 명령을 Claude Code hook으로 사전 차단합니다. |
+| `/migrate-to-shoehorn` | 테스트의 `as` 타입 단언을 `@total-typescript/shoehorn`으로 마이그레이션합니다. |
+| `/scaffold-exercises` | 섹션, 문제, 해답, 설명 구조의 연습 디렉터리를 생성합니다. |
+| `/setup-pre-commit` | Husky, lint-staged, Prettier, 타입체크, 테스트를 포함한 pre-commit hook을 설정합니다. |
+
+**설치 및 사용법**
+
+- `npx skills@latest add mattpocock/skills`를 실행합니다.
+- 설치 중 사용할 스킬과 에이전트(Claude Code, Codex 등)를 선택합니다.
+- `/setup-matt-pocock-skills`를 반드시 함께 선택합니다.
+- 에이전트에서 `/setup-matt-pocock-skills`를 실행해 이슈 트래커(GitHub, Linear, 로컬 파일), triage 라벨, 문서 저장 경로를 설정합니다.
+- 이후 `/grill-me`, `/tdd`, `/diagnose` 같은 슬래시 커맨드로 호출합니다.
+
+**잘 맞는 상황**
+
+- 새 기능이나 변경을 시작하기 전 의도를 정렬해야 할 때 `/grill-me` 또는 `/grill-with-docs`를 사용합니다.
+- 복잡한 도메인 프로젝트에서는 `CONTEXT.md`와 ADR로 용어를 통일해 재작업을 줄입니다.
+- 버그나 성능 이슈는 `/diagnose`로 체계적으로 진단합니다.
+- 기능 구현은 `/tdd`로 피드백 루프를 짧게 유지합니다.
+- PRD를 작업 단위로 나눌 때 `/to-prd`와 `/to-issues`로 수직 슬라이스를 만듭니다.
+- 며칠에 한 번 `/improve-codebase-architecture`로 아키텍처 정비 기회를 찾습니다.
+- git 실수를 줄여야 할 때 `/git-guardrails-claude-code`를 적용합니다.
+
+**다른 Skill 생태계와의 차이**
+
+| 측면 | Matt Pocock Skills | BMAD/Spec-Kit류 |
+| --- | --- | --- |
+| 설계 철학 | 작고 조합 가능한 도구 상자 | 프로세스 전체 소유 |
+| 통제권 | 개발자에게 둠 | 프레임워크에게 위임 |
+| 디버깅 | Skill 단위로 쉽게 수정 | 프로세스 깊숙이 들어가야 함 |
+| 모델 의존성 | Model-agnostic | 특정 모델을 가정하는 경우가 있음 |
+| 바탕 | 소프트웨어 엔지니어링 기본기 | 새로운 워크플로우 |
+
 ### supermemory
 
 | 항목 | 내용 |
@@ -320,4 +415,5 @@ AI 세션 운영과 개발자 워크플로우를 보조하는 Toolchain입니다
 
 | 날짜 | 변경 내용 |
 | --- | --- |
+| 2026-05-11 | `mattpocock/skills` 항목과 스킬 카탈로그, 설치/활용 기준을 추가 |
 | 2026-05-04 | 문서 포맷을 카탈로그형 구조로 개편하고 항목별 특징, 설명, 사용법을 추가 |
